@@ -12,6 +12,7 @@
     <string name="end_game">End Game</string>
     <string name="game_over">Game Over!</string>
     <string name="ok">Okay</string>
+    <string name="draw">Cat\'s Game</string>
     <string name="cancel">Cancel</string>
     <string name="end_game_message">Game is over! Would you like to play again?</string>
     <string name="quit_message">Are you sure you want to quit the game?</string>

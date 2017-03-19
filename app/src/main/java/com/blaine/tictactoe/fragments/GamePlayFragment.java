@@ -37,6 +37,7 @@ public class GamePlayFragment extends Fragment {
 
     int player1Score = 0;
     int player2Score = 0;
+    int drawScore = 0;
 
     TextView player1ScoreView;
     TextView player2ScoreView;
@@ -140,6 +141,10 @@ public class GamePlayFragment extends Fragment {
                             moves--;
                             playerTurn.setText(getPlayerName() + " Wins!");
                             buildEndOfGameAlert(getPlayerName(), getPlayerMove()).show();
+                        }else if(moves == boardSize * boardSize){
+                            playerTurn.setText(R.string.draw);
+                            buildEndOfGameAlert("Cat's Game", 0).show();
+
                         }else{
                             playerTurn.setText("It's " + getPlayerName() + "'s turn.");
                         }
@@ -178,16 +183,21 @@ public class GamePlayFragment extends Fragment {
         playerTurn = (TextView) getActivity().findViewById(R.id.p_turn);
         playerTurn.setText("It's " + player1 + "'s turn!");
 
-        if(player == 1){
-            player1Score++;
-            player1ScoreView.setText(String.valueOf(player1Score));
-        }else{
-            player2Score++;
-            player2ScoreView.setText(String.valueOf(player2Score));
 
+        if(player == 1){
+            //player1Score++;
+            player1ScoreView.setText(String.valueOf(++player1Score));
+        }else if(player == 2){
+            //player2Score++;
+            player2ScoreView.setText(String.valueOf(++player2Score));
+
+        }else{
+            TextView draw = (TextView) getActivity().findViewById(R.id.drawScore);
+            draw.setText(String.valueOf(++drawScore));
         }
 
         gameBoard = new int[boardSize][boardSize];
+        moves = 0;
 
         resetGameBoard();
         setupGameBoard();
