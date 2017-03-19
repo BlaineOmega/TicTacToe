@@ -56,18 +56,22 @@ public class GameSetupFragment extends Fragment {
 
                 final int rows = r;
 
+                //Verify the user input data
                 if(rows < 3 || rows > 7){
                     Toast.makeText(getActivity().getApplicationContext(), "Please set row number between 3 and 7", Toast.LENGTH_LONG).show();
                 }else {
+
                     if(!player1Name.equals("") &&
                             !player2Name.equals("")){
 
+                        //Pass player names and game options to next fragment
                         Bundle b = new Bundle();
                         b.putString(PLAYER_1, player1Name);
                         b.putString(PLAYER_2, player2Name);
                         b.putInt(ROWS, rows);
 
 
+                        //Start game
                         GamePlayFragment gamePlayFragment = new GamePlayFragment();
                         gamePlayFragment.setArguments(b);
                         getFragmentManager().beginTransaction()

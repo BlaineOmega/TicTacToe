@@ -1,9 +1,9 @@
 package com.blaine.tictactoe.utilities;
 
-import com.blaine.tictactoe.models.Player;
-
 /**
  * Created by blaineanderson on 3/14/17.
+ *
+ * This class is used to determine if there is a winner of a tic-tac-toe game. 
  */
 
 public class ScoringUtility {
@@ -89,9 +89,8 @@ public class ScoringUtility {
     }
 
     private static boolean checkDiagonalFromRight(int[][]board, int player){
-        int boardSize = board.length-1;
 
-        int rightIndex = boardSize;
+        int rightIndex = board.length-1;;
         int leftIndex = 0;
         boolean winner = false;
 
@@ -105,8 +104,10 @@ public class ScoringUtility {
                 winner = false;
                 break;
             }
+
             rightIndex--;
             leftIndex++;
+
         }while(leftIndex<=rightIndex);
 
         return winner;

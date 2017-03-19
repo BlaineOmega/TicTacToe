@@ -96,17 +96,22 @@ public class GamePlayFragment extends Fragment {
         table = (TableLayout) getActivity().findViewById(R.id.game_board);
         TableRow row;
 
+        //Build game board
         for(int ii = 0; ii < boardSize;ii++){
             final int x = ii;
+
+            //Build table rows
             row = new TableRow(getActivity().getApplicationContext());
             row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
             row.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorAccent, null));
 
+            //Build table tiles
             for(int jj=0; jj < boardSize; jj++){
                 final int y = jj;
                 final Button tile = new Button(context);
                 tile.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimary, null));
 
+                //Set margins to create look of tic-tac-toe
                 LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
                 lp.setMargins(3,3,3,3);
 
@@ -122,7 +127,6 @@ public class GamePlayFragment extends Fragment {
                 if(ii == boardSize - 1){
                     lp.bottomMargin = 0;
                 }
-
 
                 lp.weight = 1;
                 tile.setLayoutParams(lp);
@@ -158,6 +162,7 @@ public class GamePlayFragment extends Fragment {
         }
     }
 
+    //Alerts to direct player to quit or play again.
     private AlertDialog buildEndOfGameAlert(String player, final int playerId){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -179,16 +184,15 @@ public class GamePlayFragment extends Fragment {
         return builder.create();
     }
 
+    //Method to reset game board and track players score
     private void resetGame(int player){
         playerTurn = (TextView) getActivity().findViewById(R.id.p_turn);
         playerTurn.setText("It's " + player1 + "'s turn!");
 
 
         if(player == 1){
-            //player1Score++;
             player1ScoreView.setText(String.valueOf(++player1Score));
         }else if(player == 2){
-            //player2Score++;
             player2ScoreView.setText(String.valueOf(++player2Score));
 
         }else{
@@ -203,8 +207,18 @@ public class GamePlayFragment extends Fragment {
         setupGameBoard();
     }
 
-    private void resetGameBoard(){
 
+    //Method to update the game boad
+    private void updateBoard(int x, int y, String player ){
+        this.gameBoard[x][y] = Integer.valueOf(player);
+    }
+
+
+    /**
+     * Helper methods
+     */
+
+    private void resetGameBoard(){
         table.removeAllViews();
     }
 
@@ -228,9 +242,4 @@ public class GamePlayFragment extends Fragment {
         }
         return player2;
     }
-
-    private void updateBoard(int x, int y, String player ){
-        this.gameBoard[x][y] = Integer.valueOf(player);
-    }
-
 }
